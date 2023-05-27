@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: test-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+        - name: test
+          image: eolnexus/test
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-srv
+spec:
+  selector:
+    app: test
+  ports:
+    - name: test
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

@@ -1,0 +1,14 @@
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: skaffoldbug
+build:
+  artifacts:
+    - image: eolnexus/test
+      context: test
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - infra/k8s/ingress-srv.yaml
+    - infra/k8s/test-depl.yaml
